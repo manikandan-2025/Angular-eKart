@@ -1,0 +1,34 @@
+<app-filter
+  [all]="totalProductCount"
+  [inStock]="totalProductInStock"
+  [outOfStock]="totalProductOutOfStock"
+  (selectedFilterRadioButtonChange)="onFilterChanged($event)"
+></app-filter>
+<div class="ekart--products--container">
+  @for(product of products; track product.id; let index = $index){
+
+  <!-- <app-product
+    [product]="product"
+    [index]="index"
+    *ngIf="selectedFilterRadio === product.is_in_inventory.toString() || selectedFilterRadio === 'all'"
+  ></app-product> -->
+
+  <app-product
+    (click)="selectedProduct = product"
+    [product]="product"
+    [index]="index" 
+    *ngIf="(searchText == ''|| product.name.includes(searchText)) && 
+    (selectedFilterRadio === product.is_in_inventory.toString() || selectedFilterRadio === 'all')"
+  ></app-product>
+
+  <!-- <app-product
+  (click)="selectedProduct = product"
+  [product]="product"
+  [index]="index" 
+  *ngIf="searchText == ''|| product.name.includes(searchText)"
+></app-product> -->
+
+  } @empty {
+  <h1>No products available</h1>
+  }
+</div>

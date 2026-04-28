@@ -1,0 +1,62 @@
+<div class="ekart--product-container">
+  <!-- <img [src]="product.pImage" alt="">
+<p>Name: {{product.name}}</p>
+<p>Price: {{'$'+ product.price}}</p>
+<p>Color: {{product.color}}</p>
+<p>Discounted Price: ${{getDiscountedPrice().toFixed(2)}}</p>
+<p>{{product.inStock> 0 ? (product.inStock == 1? 'Only 1 item in stock.'
+     :'Only ' + product.inStock + ' items left'): 'Not in Stock'}}</p>
+<button (click)="decrementCartValue()">-</button>
+<span>{{addToCart}}</span>
+<button (click)="incrementCartValue()">+</button>
+
+<button [disabled]="product.inStock>0?false:true">Buy Now</button>
+<input type="text" bind-value="name" (input)="onNameChange()"> <br>
+<input type="text"  (input)="onNameChange($event)"> <br>
+<p>{{name}}</p> -->
+
+  <!-- for disabled, hidden, checked which are with boolean values don't work with 
+property binding, so, we need to use property binding 
+[value] can be also written as bind-value -->
+  <search (searchTextChanged)="setSearchText($event)"></search>
+
+  <!-- <div *ngFor="let item of listOfStrings">
+    <p>Current element of array is: {{item}}</p>
+</div>
+
+<div>
+   @for (name of listOfStrings; track index; let index = $index) {
+    <p>{{name}}</p>
+   }
+</div> -->
+  <product-list [searchText]="searchText" #productListComponent></product-list>
+
+  <product-detail 
+  *ngIf="productListComponent.selectedProduct"
+  [prductListComp]="productListComponent"
+  ></product-detail>
+
+<div class="ekart-featured-products">
+  <div class="ekart-featured-product-heading">
+    <h1>Latest Arrivals in Popular Brands </h1>
+  </div>
+<featured-brands>
+  <h3 class="title">New Arrivals in Nike</h3>
+  <button class="call-to-action">Show new arrivals in Nike</button>
+
+</featured-brands>
+<featured-brands>
+  <h3 header class="title">New Arrivals in Addidas</h3>
+  <button class="call-to-action">Show new arrivals in Addidas</button>
+
+</featured-brands>
+<featured-brands>
+  <h3 class="title">New Arrivals in Reebok</h3>
+  <button class="call-to-action">Show new arrivals in Reebook</button>
+
+</featured-brands>
+
+
+
+</div>
+</div>
